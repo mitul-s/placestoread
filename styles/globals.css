@@ -50,7 +50,12 @@ li {
 
 @layer utilities {
   .grid-cols-yeah {
-    grid-template-columns: 1.5fr 0.4fr 0.4fr 1fr 1fr 0.1fr;
+    grid-template-columns: 1.5fr 0.25fr 0.75fr 1fr 1fr 0.1fr;
+    @apply max-w-screen-2xl mx-auto;
+  }
+
+  .content, .overlay {
+    grid-area: 1/1;
   }
 }
 
@@ -63,6 +68,10 @@ li {
   content: counter(park-list, decimal-leading-zero);
   margin-right: 2rem;
   font-variant: tabular-nums;
+}
+
+.col-divider::after {
+  @apply w-px h-full col-start-5 bg-mcqueen content-[''];
 }
 
 /* 
