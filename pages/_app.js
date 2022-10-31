@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import Footer from "@/components/Footer";
 import localFont from "@next/font/local";
 
 const montrealMedium = localFont({
@@ -8,10 +9,12 @@ const montrealMedium = localFont({
 
 function App({ Component, pageProps }) {
   return (
-    // TO FIX u cant have main here silly
-    <main className={montrealMedium.className}>
+    // to fix and make semantic
+
+    <div className={montrealMedium.className}>
       <Component {...pageProps} />
-    </main>
+      <Footer />
+    </div>
   );
 }
 
