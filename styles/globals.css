@@ -13,6 +13,8 @@ body {
 
 html, body, #__next {
   height: 100%;
+  @apply text-mcqueen;
+  font-family: var(--montreal);
 }
 
 #__next {
@@ -44,6 +46,23 @@ p, h1, h2, h3, h4, h5, h6 {
 
 li {
   list-style: none;
+}
+
+@layer utilities {
+  .grid-cols-yeah {
+    grid-template-columns: 1.5fr 0.4fr 0.4fr 1fr 1fr 0.1fr;
+  }
+}
+
+.park {
+  counter-reset: park-list;
+}
+
+.park h2::before {
+  counter-increment: park-list; 
+  content: counter(park-list, decimal-leading-zero);
+  margin-right: 2rem;
+  font-variant: tabular-nums;
 }
 
 /* 
