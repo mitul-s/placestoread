@@ -48,14 +48,36 @@ li {
   list-style: none;
 }
 
+@keyframes slideDown {
+  from { height: 0 }
+  to { height: var(--radix-collapsible-content-height) }
+}
+@keyframes close {
+  from { height: var(--radix-collapsible-content-height) }
+  to { height: 0 }
+}
+
 @layer utilities {
   .grid-cols-yeah {
-    grid-template-columns: 1.5fr 0.25fr 0.75fr 1fr 1fr 0.1fr;
+    grid-template-columns: 1.5fr 0.5fr 1fr 1fr 1fr 0.1fr;
     @apply max-w-screen-2xl mx-auto;
   }
 
   .content, .overlay {
     grid-area: 1/1;
+  }
+  
+  .open {
+    animation: slideDown 0.5s ease-in;
+  }
+  .close {
+    animation: close 0.5s ease-out;
+  }
+  
+  .h-fill-available {
+    height: -webkit-fill-available;
+    height: -moz-available;
+    height: fill-available;
   }
 }
 
