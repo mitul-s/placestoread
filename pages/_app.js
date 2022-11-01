@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Footer from "@/components/Footer";
 import localFont from "@next/font/local";
+import Header from "@/components/Header";
 
 const montrealMedium = localFont({
   src: "../public/PPNeueMontreal-Medium.otf",
@@ -9,9 +10,10 @@ const montrealMedium = localFont({
 
 function App({ Component, pageProps }) {
   return (
-    // to fix and make semantic
-
-    <div className={montrealMedium.className}>
+    <div
+      className={`flex flex-col isolate min-h-full ${montrealMedium.className}`}
+    >
+      <Header />
       <Component {...pageProps} />
       <Footer />
     </div>
