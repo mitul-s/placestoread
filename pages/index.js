@@ -112,7 +112,7 @@ export default function Home({ parks }) {
               </div>
             </div>
             <div className="col-span-2 col-start-5 pt-3 pb-6 ml-4">
-              <div className="w-full h-24 bg-mcqueen/50">Image</div>
+              {/* <Image src=""  /> */}
             </div>
           </Collapsible.Content>
         </li>
