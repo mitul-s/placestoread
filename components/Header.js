@@ -64,8 +64,8 @@ export default function Header() {
       <div>
         <h1 className="text-5xl">Places to Read</h1>
         <p className="max-w-md mt-1">
-          A project to help people find places outside where they can enjoy a
-          book, people watch and touch some grass.
+          [This project is still a work in progress! But not far from being
+          done]
         </p>
         <Link href="/about" className="flex items-center mt-4 gap-x-1 w-fit">
           About <Arrow />
