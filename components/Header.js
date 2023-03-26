@@ -3,6 +3,7 @@ import Link from "@/components/Link";
 import Button from "@/components/Button";
 import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Arrow = ({ ...props }) => {
   return (
@@ -41,6 +42,7 @@ const Field = ({ label, name, type, placeholder, textArea, id, ...props }) => {
 };
 
 export default function Header() {
+  const route = useRouter().route;
   const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORMSPREE_ID);
   const [inputs, setInputs] = React.useState({
     userTwitter: "",
@@ -62,14 +64,23 @@ export default function Header() {
   return (
     <header className="justify-between w-full px-4 pt-12 pb-16 mx-auto sm:flex max-w-screen-2xl">
       <div>
-        <h1 className="text-5xl">Places to Read</h1>
+        <h1 className="text-5xl">
+          <Link href="/">Places to Read</Link>
+        </h1>
         <p className="max-w-md mt-1">
           [This project is still a work in progress! But not far from being
           done]
         </p>
-        <Link href="/about" className="flex items-center mt-4 gap-x-1 w-fit">
-          About <Arrow />
-        </Link>
+        {route === "/" ? (
+          <Link href="/about" className="flex items-center mt-4 gap-x-1 w-fit">
+            About <Arrow />
+          </Link>
+        ) : (
+          <Link href="/" className="flex items-center mt-4 gap-x-1 w-fit">
+            <Arrow className="rotate-180" />
+            Home
+          </Link>
+        )}
       </div>
       <div className="flex items-start mt-4 sm:mt-0 gap-x-2">
         <Dialog.Root>

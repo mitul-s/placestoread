@@ -71,7 +71,7 @@ li {
     animation: slideDown 0.5s ease-in;
   }
   .close {
-    animation: close 0.5s ease-out;
+    animation: close 0.5s ease;
   }
   
   .h-fill-available {

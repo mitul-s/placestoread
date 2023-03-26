@@ -11,11 +11,11 @@
   "dependencies": {
     "@formspree/react": "^2.4.0",
     "@next/font": "^13.0.0",
-    "@radix-ui/react-collapsible": "^1.0.1",
+    "@radix-ui/react-collapsible": "^1.0.2",
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-slot": "^1.0.1",
     "googleapis": "^109.0.0",
-    "next": "13.0.0",
+    "next": "^13.2.5-canary.18",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

@@ -64,7 +64,7 @@ export default function Home({ parks }) {
     const [open, setOpen] = React.useState(false);
 
     return (
-      <Collapsible.Root asChild>
+      <Collapsible.Root>
         <li className="transition hover:bg-sally/10">
           <Collapsible.Trigger className="w-full grid text-left py-2.5 px-4 grid-cols-yeah">
             <h2>{parkName}</h2>
@@ -107,8 +107,15 @@ export default function Home({ parks }) {
                 </div>
               </div>
               <div className="flex gap-x-2">
-                <Button>Share</Button>
-                <Button>Leave a review</Button>
+                <Link
+                  href={`https://www.google.com/maps/@${encodeURIComponent(
+                    coordinates
+                  )}`}
+                  isExternal
+                >
+                  Get directions
+                </Link>
+                {/* <Button>Leave a review</Button> */}
               </div>
             </div>
             <div className="col-span-2 col-start-5 pt-3 pb-6 ml-4">
