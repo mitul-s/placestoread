@@ -95,14 +95,3 @@ li {
 .col-divider::after {
   @apply w-px h-full col-start-5 bg-mcqueen content-[''];
 }
-
-/* 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-} */

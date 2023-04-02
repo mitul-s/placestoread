@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "@/components/Link";
-import Button from "@/components/Button";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { google } from "googleapis";
 import React from "react";
@@ -60,9 +59,6 @@ export default function Home({ parks }) {
       suggestedBookLink,
     } = props;
 
-    console.log(props);
-    const [open, setOpen] = React.useState(false);
-
     return (
       <Collapsible.Root>
         <li className="transition hover:bg-sally/10">
@@ -80,46 +76,124 @@ export default function Home({ parks }) {
             </Link>
             <div className="self-center w-2 h-2 rounded-full bg-mcqueen place-self-end" />
           </Collapsible.Trigger>
-          <Collapsible.Content className="grid px-4 overflow-hidden grid-cols-yeah data-[state=open]:open data-[state=closed]:close">
-            <div className="flex flex-col col-span-2 pl-12 ml-1.5 gap-y-6 pb-6 pt-3">
-              <h3 className="sr-only">Description</h3>
-              <p>{description}</p>
-              <div className="flex leading-none gap-x-10">
-                <div>
-                  <h3 className="text-sm mb-1.5">Recommended reading</h3>
-                  <Link
-                    href={suggestedBookLink}
-                    isExternal
-                    className="underline transition hover:bg-sally/50 underline-offset-4"
-                  >
-                    {suggestedBook}
-                  </Link>
+          <Collapsible.Content className="overflow-hidden data-[state=open]:open data-[state=closed]:close">
+            <div className="grid px-4 overflow-hidden grid-cols-yeah">
+              <div className="flex flex-col col-span-2 pl-12 ml-1.5 gap-y-6 pb-6 pt-3">
+                <h3 className="sr-only">Description</h3>
+                <p>{description}</p>
+                <div className="flex leading-none gap-x-10">
+                  <div>
+                    <h3 className="text-sm mb-1.5">Recommended reading</h3>
+                    <Link
+                      href={suggestedBookLink}
+                      isExternal
+                      className="underline transition hover:bg-sally/50 underline-offset-4"
+                    >
+                      {suggestedBook}
+                    </Link>
+                  </div>
+                  <div>
+                    <h3 className="text-sm mb-1.5">Submitted by</h3>
+                    <Link
+                      href={submittedByLink}
+                      isExternal
+                      className="underline transition hover:bg-sally/50 underline-offset-4"
+                    >
+                      @{submittedByHandle}
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-sm mb-1.5">Submitted by</h3>
+                <div className="flex gap-x-2">
                   <Link
-                    href={submittedByLink}
+                    href={`https://www.google.com/maps/@${encodeURIComponent(
+                      coordinates
+                    )}`}
                     isExternal
-                    className="underline transition hover:bg-sally/50 underline-offset-4"
                   >
-                    @{submittedByHandle}
+                    Get directions
                   </Link>
+                  {/* <Button>Leave a review</Button> */}
                 </div>
               </div>
-              <div className="flex gap-x-2">
-                <Link
-                  href={`https://www.google.com/maps/@${encodeURIComponent(
-                    coordinates
-                  )}`}
-                  isExternal
-                >
-                  Get directions
-                </Link>
-                {/* <Button>Leave a review</Button> */}
+              <div className="col-span-2 col-start-5 pt-3 pb-6 ml-4">
+                {/* <Image src=""  /> */}
               </div>
             </div>
-            <div className="col-span-2 col-start-5 pt-3 pb-6 ml-4">
-              {/* <Image src=""  /> */}
+          </Collapsible.Content>
+        </li>
+      </Collapsible.Root>
+    );
+  };
+
+  const MobileParkRow = (props) => {
+    const {
+      parkName,
+      city,
+      country,
+      coordinates,
+      locationLink,
+      description,
+      submittedByLink,
+      submittedByHandle,
+      suggestedBook,
+      suggestedBookLink,
+      id,
+    } = props;
+    return (
+      <Collapsible.Root>
+        <li>
+          <Collapsible.Trigger className="flex justify-center items-center gap-x-4 w-full pr-4 group">
+            <div className="bg-mcqueen text-white px-4 py-6 z-10 w-full max-w-[3.5rem] -mb-px tabular-nums">
+              {id.padStart(2, "0")}
+            </div>
+            <div className="flex flex-col text-left">
+              <span>{parkName}</span>
+              <span>
+                {city}, {country}
+              </span>
+            </div>
+            <div className="ml-auto transition-transform duration-300 group-data-[state='open']:rotate-90">
+              {"→"}
+            </div>
+          </Collapsible.Trigger>
+          <Collapsible.Content className="data-[state=open]:open data-[state=closed]:close overflow-hidden">
+            <div className="flex flex-row">
+              <div className="bg-mcqueen h-max-content w-full max-w-[3.5rem]" />
+              <div className="px-4 pt-2">
+                <p className="max-w-prose">{description}</p>
+                <div className="flex flex-col mt-8 items-baseline leading-none bg-mcqueen/5 text-sm -mx-4 divide-y divide-mcqueen border-t border-mcqueen">
+                  <div className="w-full py-3 flex flex-row justify-between px-4">
+                    <h3>Recommended reading</h3>
+                    <Link
+                      href={suggestedBookLink}
+                      isExternal
+                      className="underline transition hover:bg-sally/50 underline-offset-4 w-fit"
+                    >
+                      {suggestedBook}
+                    </Link>
+                  </div>
+                  <div className="w-full py-3 flex flex-row justify-between px-4">
+                    <h3>Submitted by</h3>
+                    <Link
+                      href={submittedByLink}
+                      isExternal
+                      className="underline transition hover:bg-sally/50 underline-offset-4 w-fit"
+                    >
+                      @{submittedByHandle}
+                    </Link>
+                  </div>
+                  <div className="w-full py-3 flex flex-row justify-between px-4">
+                    <h3>Directions</h3>
+                    <Link
+                      href={locationLink}
+                      isExternal
+                      className="underline transition hover:bg-sally/50 underline-offset-4 w-fit"
+                    >
+                      {coordinates}
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </Collapsible.Content>
         </li>
@@ -128,15 +202,20 @@ export default function Home({ parks }) {
   };
 
   return (
-    <>
-      <main className="hidden w-full h-full sm:block">
+    <main className="w-full h-full">
+      <ul className="sm:hidden grid w-full divide-y divide-mcqueen border-t-2 border-mcqueen">
+        {parks.map((park) => (
+          <MobileParkRow key={park.id} {...park} />
+        ))}
+      </ul>
+      <div className="hidden sm:block">
         <div className="text-xl border-b-2 border-mcqueen">
           <ul className="grid w-full px-4 grid-cols-yeah">
             <li className="pl-12 ml-1.5">Park</li>
             <li>City</li>
             <li>Country</li>
             <li>Notable Feature</li>
-            <li className="pl-4 after:content-['']">Map</li>
+            <li className="pl-4">Map</li>
           </ul>
         </div>
         <div className="grid isolate">
@@ -150,7 +229,7 @@ export default function Home({ parks }) {
           </div>
         </div>
         <div className="absolute grid w-full px-4 -translate-x-1/2 left-1/2 grid-cols-yeah col-divider h-fill-available" />
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

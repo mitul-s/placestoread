@@ -89,6 +89,9 @@ export default function Header() {
           </Dialog.Trigger>
           <Dialog.Overlay className="fixed inset-0 z-10 bg-mcqueen/25 backdrop-brightness-90" />
           <Dialog.Content className="fixed inset-0 z-20 w-full max-w-md px-4 py-6 mx-auto mt-48 bg-white border-2 h-fit border-mcqueen">
+            <Dialog.Close className="absolute -top-2 right-1 text-6xl isolate z-50 cursor-pointer p-4">
+              ̽
+            </Dialog.Close>
             <form
               className="flex flex-col gap-y-4"
               method="POST"
@@ -104,7 +107,7 @@ export default function Header() {
                   value={inputs.userTwitter}
                 />
                 <Field
-                  label="Suggested Book"
+                  label="Suggested book"
                   placeholder="Project Hail Mary"
                   id="suggestedBook"
                   onChange={handleOnChange}
@@ -114,7 +117,7 @@ export default function Header() {
               <hr className="border-mcqueen/25" />
               <h2 className="text-xl leading-none ">The Place</h2>
               <Field
-                label="Park Name"
+                label="Park name"
                 placeholder="Riverdale Park East"
                 id="parkName"
                 onChange={handleOnChange}
