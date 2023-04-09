@@ -1,26 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import Link from "@/components/Link";
 import Button from "@/components/Button";
+import Arrow from "@/components/Arrow";
 import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import { useRouter } from "next/router";
-
-const Arrow = ({ ...props }) => {
-  return (
-    <svg
-      width={12}
-      height={12}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path
-        d="M6.392 11.21 5.37 10.2 8.92 6.648H0V5.17h8.92L5.37 1.625 6.391.608l5.301 5.301-5.3 5.301Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-};
 
 const Field = ({ label, name, type, placeholder, textArea, id, ...props }) => {
   const Component = textArea ? "textarea" : "input";
@@ -159,7 +143,7 @@ export default function Header() {
             </form>
           </Dialog.Content>
         </Dialog.Root>
-        <Button>Share feedback</Button>
+        {/* <Button>Share feedback</Button> */}
       </div>
     </header>
   );

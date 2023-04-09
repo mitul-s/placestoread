@@ -1,6 +1,5 @@
-import Head from "next/head";
-import Image from "next/image";
 import Link from "@/components/Link";
+import Arrow from "@/components/Arrow";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { google } from "googleapis";
 import React from "react";
@@ -50,7 +49,8 @@ export default function Home({ parks }) {
       city,
       country,
       notableFeature,
-      coordinates,
+      latitude,
+      longitude,
       locationLink,
       description,
       submittedByLink,
@@ -62,7 +62,7 @@ export default function Home({ parks }) {
     return (
       <Collapsible.Root>
         <li className="transition hover:bg-sally/10">
-          <Collapsible.Trigger className="w-full grid text-left py-2.5 px-4 grid-cols-yeah">
+          <Collapsible.Trigger className="w-full grid text-left py-2.5 px-4 grid-cols-yeah group">
             <h2>{parkName}</h2>
             <div>{city}</div>
             <div>{country}</div>
@@ -70,11 +70,13 @@ export default function Home({ parks }) {
             <Link
               href={locationLink}
               isExternal
-              className="z-10 p-1 ml-4 leading-none transition rounded-sm bg-sally/50 w-fit hover:bg-mcqueen hover:text-white"
+              className="z-10 p-1 ml-4 leading-none transition rounded-sm bg-sally/50 w-fit hover:bg-mcqueen hover:text-white tabular-nums text-sm"
             >
-              {coordinates}
+              {latitude.substr(0, 8)}, {longitude.substr(0, 8)}
             </Link>
-            <div className="self-center w-2 h-2 rounded-full bg-mcqueen place-self-end" />
+            <div className="ml-auto transition-transform duration-300 group-data-[state='open']:rotate-90 place-self-center">
+              <Arrow />
+            </div>
           </Collapsible.Trigger>
           <Collapsible.Content className="overflow-hidden data-[state=open]:open data-[state=closed]:close">
             <div className="grid px-4 overflow-hidden grid-cols-yeah">
@@ -102,21 +104,16 @@ export default function Home({ parks }) {
                       @{submittedByHandle}
                     </Link>
                   </div>
-                </div>
-                <div className="flex gap-x-2">
                   <Link
-                    href={`https://www.google.com/maps/@${encodeURIComponent(
-                      coordinates
+                    href={`https://www.google.com/maps/search/?api=1&query@${encodeURIComponent(
+                      latitude + "," + longitude
                     )}`}
+                    className="flex items-center self-end gap-x-1.5 underline transition hover:bg-sally/50 underline-offset-4"
                     isExternal
                   >
                     Get directions
                   </Link>
-                  {/* <Button>Leave a review</Button> */}
                 </div>
-              </div>
-              <div className="col-span-2 col-start-5 pt-3 pb-6 ml-4">
-                {/* <Image src=""  /> */}
               </div>
             </div>
           </Collapsible.Content>
@@ -153,7 +150,7 @@ export default function Home({ parks }) {
               </span>
             </div>
             <div className="ml-auto transition-transform duration-300 group-data-[state='open']:rotate-90">
-              {"→"}
+              <Arrow />
             </div>
           </Collapsible.Trigger>
           <Collapsible.Content className="data-[state=open]:open data-[state=closed]:close overflow-hidden">
