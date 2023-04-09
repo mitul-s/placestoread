@@ -52,8 +52,8 @@ export default function Header() {
           <Link href="/">Places to Read</Link>
         </h1>
         <p className="max-w-md mt-1">
-          [This project is still a work in progress! But not far from being
-          done]
+          Parks around the world handpicked by the internet that are perfect to
+          sit down in and enjoy a book.
         </p>
         {route === "/" ? (
           <Link href="/about" className="flex items-center mt-4 gap-x-1 w-fit">
