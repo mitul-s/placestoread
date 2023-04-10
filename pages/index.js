@@ -127,7 +127,8 @@ export default function Home({ parks }) {
       parkName,
       city,
       country,
-      coordinates,
+      latitude,
+      longitude,
       locationLink,
       description,
       submittedByLink,
@@ -186,7 +187,7 @@ export default function Home({ parks }) {
                       isExternal
                       className="underline transition hover:bg-sally/50 underline-offset-4 w-fit"
                     >
-                      {coordinates}
+                      {latitude.substr(0, 8)}, {longitude.substr(0, 8)}
                     </Link>
                   </div>
                 </div>
