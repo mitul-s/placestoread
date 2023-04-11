@@ -28,6 +28,7 @@ const Field = ({ label, name, type, placeholder, textArea, id, ...props }) => {
 export default function Header() {
   const route = useRouter().route;
   const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORMSPREE_ID);
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [inputs, setInputs] = React.useState({
     userTwitter: "",
     suggestedBook: "",
@@ -79,7 +80,10 @@ export default function Header() {
             <form
               className="flex flex-col gap-y-4"
               method="POST"
-              onSubmit={handleSubmit}
+              onSubmit={() => {
+                handleSubmit();
+                setIsSubmitted(true);
+              }}
             >
               <h2 className="text-xl leading-none">About You</h2>
               <div className="grid grid-cols-2 gap-x-2">
@@ -140,6 +144,9 @@ export default function Header() {
               >
                 Submit
               </Button>
+              {isSubmitted && (
+                <p>{"Received! I'll add to it the list soon."}</p>
+              )}
             </form>
           </Dialog.Content>
         </Dialog.Root>
