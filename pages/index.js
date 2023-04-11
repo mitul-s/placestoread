@@ -96,13 +96,17 @@ export default function Home({ parks }) {
                   </div>
                   <div>
                     <h3 className="text-sm mb-1.5">Submitted by</h3>
-                    <Link
-                      href={submittedByLink}
-                      isExternal
-                      className="underline transition hover:bg-sally/50 underline-offset-4"
-                    >
-                      @{submittedByHandle}
-                    </Link>
+                    {submittedByHandle ? (
+                      <Link
+                        href={submittedByLink}
+                        isExternal
+                        className="underline transition hover:bg-sally/50 underline-offset-4"
+                      >
+                        @{submittedByHandle}
+                      </Link>
+                    ) : (
+                      <p>{submittedByLink}</p>
+                    )}
                   </div>
                   <Link
                     href={`https://www.google.com/maps/search/?api=1&query@${encodeURIComponent(
@@ -172,13 +176,17 @@ export default function Home({ parks }) {
                   </div>
                   <div className="w-full py-3 flex flex-row justify-between px-4">
                     <h3>Submitted by</h3>
-                    <Link
-                      href={submittedByLink}
-                      isExternal
-                      className="underline transition hover:bg-sally/50 underline-offset-4 w-fit"
-                    >
-                      @{submittedByHandle}
-                    </Link>
+                    {submittedByHandle ? (
+                      <Link
+                        href={submittedByLink}
+                        isExternal
+                        className="underline transition hover:bg-sally/50 underline-offset-4 w-fit"
+                      >
+                        @{submittedByHandle}
+                      </Link>
+                    ) : (
+                      <p>{submittedByLink}</p>
+                    )}
                   </div>
                   <div className="w-full py-3 flex flex-row justify-between px-4">
                     <h3>Directions</h3>
