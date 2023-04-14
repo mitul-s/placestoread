@@ -141,7 +141,12 @@ export default function Header() {
                 Submit
               </Button>
               {state.succeeded && (
-                <p>{"Received! I'll add to it the list soon."}</p>
+                <>
+                  <p>{"Received! I'll add to it the list soon."}</p>
+                  <p className="text-xs -mt-3">
+                    My form handler is not the best and I might miss some 🥺
+                  </p>
+                </>
               )}
             </form>
           </Dialog.Content>
