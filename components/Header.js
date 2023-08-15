@@ -2,7 +2,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Link from "@/components/Link";
 import Button from "@/components/Button";
 import Arrow from "@/components/Arrow";
-import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import { useRouter } from "next/router";
 
@@ -27,7 +26,17 @@ const Field = ({ label, name, type, placeholder, textArea, id, ...props }) => {
 
 export default function Header() {
   const route = useRouter().route;
-  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORMSPREE_ID);
+  const [submitted, setSubmitted] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const handleParam = () => (e) => {
+    e.persist();
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
   const [inputs, setInputs] = React.useState({
     userTwitter: "",
     suggestedBook: "",
@@ -37,12 +46,22 @@ export default function Header() {
     parkDescription: "",
   });
 
-  const handleOnChange = (e) => {
-    e.persist();
-    setInputs((prev) => ({
-      ...prev,
-      [e.target.id]: e.target.value,
-    }));
+  const formSubmit = (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    const formData = new FormData();
+    Object.entries(inputs).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    fetch(`https://getform.io/f/${process.env.NEXT_PUBLIC_FORM_ID}`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    }).then(() => {
+      setSubmitted(true);
+    });
   };
 
   return (
@@ -73,13 +92,13 @@ export default function Header() {
           </Dialog.Trigger>
           <Dialog.Overlay className="fixed inset-0 z-10 bg-mcqueen/25 backdrop-brightness-90" />
           <Dialog.Content className="fixed inset-0 z-20 w-full max-w-md px-4 py-6 mx-auto mt-48 bg-white border-2 h-fit border-mcqueen">
-            <Dialog.Close className="absolute -top-2 right-1 text-6xl isolate z-50 cursor-pointer p-4">
+            <Dialog.Close className="absolute z-50 p-4 text-6xl cursor-pointer -top-2 right-1 isolate">
               ̽
             </Dialog.Close>
             <form
               className="flex flex-col gap-y-4"
               method="POST"
-              onSubmit={handleSubmit}
+              onSubmit={formSubmit}
             >
               <h2 className="text-xl leading-none">About You</h2>
               <div className="grid grid-cols-2 gap-x-2">
@@ -87,14 +106,14 @@ export default function Header() {
                   label="Your Twitter (optional)"
                   placeholder="https://"
                   id="userTwitter"
-                  onChange={handleOnChange}
+                  onChange={handleParam()}
                   value={inputs.userTwitter}
                 />
                 <Field
                   label="Suggested book"
                   placeholder="Project Hail Mary"
                   id="suggestedBook"
-                  onChange={handleOnChange}
+                  onChange={handleParam()}
                   value={inputs.suggestedBook}
                 />
               </div>
@@ -104,7 +123,7 @@ export default function Header() {
                 label="Park name"
                 placeholder="Riverdale Park East"
                 id="parkName"
-                onChange={handleOnChange}
+                onChange={handleParam()}
                 value={inputs.parkName}
               />
               <div className="grid grid-cols-2 gap-x-2">
@@ -112,14 +131,14 @@ export default function Header() {
                   label="City"
                   placeholder="Toronto"
                   id="city"
-                  onChange={handleOnChange}
+                  onChange={handleParam()}
                   value={inputs.city}
                 />
                 <Field
                   label="Country"
                   placeholder="Canada"
                   id="country"
-                  onChange={handleOnChange}
+                  onChange={handleParam()}
                   value={inputs.country}
                 />
               </div>
@@ -129,21 +148,21 @@ export default function Header() {
                 textArea
                 rows={5}
                 id="parkDescription"
-                onChange={handleOnChange}
+                onChange={handleParam()}
                 value={inputs.parkDescription}
               />
 
               <Button
                 type="submit"
                 className="p-2 text-white rounded-sm bg-mcqueen disabled:bg-black"
-                disabled={state.submitting || state.succeeded}
+                disabled={submitted || submitting}
               >
                 Submit
               </Button>
-              {state.succeeded && (
+              {submitted && (
                 <>
                   <p>{"Received! I'll add to it the list soon."}</p>
-                  <p className="text-xs -mt-3">
+                  <p className="-mt-3 text-xs">
                     My form handler is not the best and I might miss some 🥺
                   </p>
                 </>
