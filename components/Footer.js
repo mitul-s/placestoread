@@ -2,7 +2,7 @@ import Link from "@/components/Link";
 
 export default function Footer() {
   return (
-    <footer className="z-10 flex items-baseline gap-x-1 w-full px-4 py-2 mt-auto text-white bg-mcqueen">
+    <footer className="z-10 flex items-baseline w-full px-4 py-2 mt-auto text-white gap-x-1 bg-mcqueen">
       <Link
         href="https://twitter.com/typicalmitul"
         isExternal
@@ -10,7 +10,6 @@ export default function Footer() {
       >
         Built by Mitul Shah
       </Link>
-      <p className="text-xs">and descriptions by AI</p>
     </footer>
   );
 }

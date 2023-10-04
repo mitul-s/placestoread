@@ -143,7 +143,7 @@ export default function Header() {
                 />
               </div>
               <Field
-                label="Describe the park"
+                label="Describe the park (encouraged for a submission)"
                 placeholder="In your own words, a beautiful park..."
                 textArea
                 rows={5}

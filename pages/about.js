@@ -2,8 +2,8 @@ import Link from "@/components/Link";
 
 export default function About() {
   return (
-    <main className="px-4 max-w-screen-2xl w-full mx-auto">
-      <div className="text-lg max-w-2xl w-fit flex flex-col gap-4">
+    <main className="w-full px-4 mx-auto max-w-screen-2xl">
+      <div className="flex flex-col max-w-2xl gap-4 text-lg w-fit">
         <p>
           Built this project to practice my design skills, specifically working
           with a limited set of colours and font sizes. This project was deeply
@@ -25,6 +25,7 @@ export default function About() {
             "I'd love for you to share places around the around the world that also brought you joy in a similar way."
           }
         </p>
+        <div className="h-px w-96 bg-sally" />
         <p className="text-sm">
           You can check out the repository for this website{" "}
           <Link
@@ -35,6 +36,9 @@ export default function About() {
             here
           </Link>
           .
+        </p>
+        <p className="text-sm">
+          Featured on Read.cv, Minimal Gallery and Where I Would Like to Read{" "}
         </p>
       </div>
     </main>
