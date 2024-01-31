@@ -22,7 +22,7 @@ export default function About() {
         </p>
         <p>
           {
-            "I'd love for you to share places around the around the world that also brought you joy in a similar way."
+            "I'd love for you to share places around the world that also brought you joy in a similar way."
           }
         </p>
         <div className="h-px w-96 bg-sally" />
