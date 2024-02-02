@@ -37,11 +37,6 @@ function App({ Component, pageProps }) {
         twitter={{
           handle: "@typicalmitul",
           site: "@typicalmitul",
-          title: "Places to Read",
-          description:
-            "Discover handpicked parks around the world where you can sit down and enjoy a good book.",
-          image: "https://www.placestoread.xyz/og.png",
-          alt: "Text of the title and description with a backdrop of a park",
           cardType: "summary_large_image",
         }}
       />
