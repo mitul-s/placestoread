@@ -16,6 +16,7 @@
     "@radix-ui/react-slot": "^1.0.1",
     "googleapis": "^109.0.0",
     "next": "^13.2.5-canary.18",
+    "next-seo": "^6.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
