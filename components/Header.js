@@ -46,22 +46,29 @@ export default function Header() {
     parkDescription: "",
   });
 
-  const formSubmit = (e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    const formData = new FormData();
-    Object.entries(inputs).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
-    fetch(`https://getform.io/f/${process.env.NEXT_PUBLIC_FORM_ID}`, {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    }).then(() => {
-      setSubmitted(true);
-    });
+    try {
+      const response = await fetch("/api/submit-place", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        throw new Error("Failed to submit");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to submit. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -159,14 +166,7 @@ export default function Header() {
               >
                 Submit
               </Button>
-              {submitted && (
-                <>
-                  <p>{"Received! I'll add to it the list soon."}</p>
-                  <p className="-mt-3 text-xs">
-                    My form handler is not the best and I might miss some 🥺
-                  </p>
-                </>
-              )}
+              {submitted && <p>{"Received! I'll add to it the list soon."}</p>}
             </form>
           </Dialog.Content>
         </Dialog.Root>
