@@ -110,7 +110,7 @@ export default function Header() {
               <h2 className="text-xl leading-none">About You</h2>
               <div className="grid grid-cols-2 gap-x-2">
                 <Field
-                  label="Your Twitter (optional)"
+                  label="Your Social (optional)"
                   placeholder="https://"
                   id="userTwitter"
                   onChange={handleParam()}
