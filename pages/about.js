@@ -7,14 +7,7 @@ export default function About() {
         <p>
           Built this project to practice my design skills, specifically working
           with a limited set of colours and font sizes. This project was deeply
-          inspired by{" "}
-          <Link
-            isExternal
-            href="https://verygoodfilms.co/"
-            className="underline transition hover:bg-sally/50 underline-offset-4"
-          >
-            Very Good Films
-          </Link>
+          inspired by Very Good Films
           <span className="text-xs"> (i know, basically a copy)</span> and a
           solo backpacking trip I took in 2022. It did not take me long to
           realize that being in a nice park with my Kindle is more than enough
