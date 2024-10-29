@@ -4,6 +4,7 @@ import localFont from "@next/font/local";
 import Header from "@/components/Header";
 import Head from "next/head";
 import { DefaultSeo } from "next-seo";
+import { Analytics } from "@vercel/analytics/react";
 
 const montrealMedium = localFont({
   src: "../public/PPNeueMontreal-Medium.otf",
@@ -13,6 +14,7 @@ const montrealMedium = localFont({
 function App({ Component, pageProps }) {
   return (
     <>
+      <Analytics />
       <DefaultSeo
         title="Places to Read"
         description="Discover handpicked parks around the world where you can sit down and enjoy a good book."
