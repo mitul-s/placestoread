@@ -108,7 +108,7 @@ export default function Home({ parks }) {
                       <p>{submittedByLink}</p>
                     )}
                   </div>
-                  <Link
+                  {/* <Link
                     href={`https://www.google.com/maps/search/?api=1&query@${encodeURIComponent(
                       latitude + "," + longitude
                     )}`}
@@ -116,7 +116,7 @@ export default function Home({ parks }) {
                     isExternal
                   >
                     Get directions
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
