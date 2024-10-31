@@ -81,7 +81,7 @@ export default function Header() {
           Parks around the world handpicked by the internet that are perfect to
           sit down in and enjoy a book. Built by{" "}
           <Link
-            href="https://x.com/typicalmitul"
+            href="https://instagram.com/typicalmitul"
             isExternal
             className="underline w-fit"
           >
