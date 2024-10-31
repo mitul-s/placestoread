@@ -79,7 +79,15 @@ export default function Header() {
         </h1>
         <p className="max-w-md mt-1">
           Parks around the world handpicked by the internet that are perfect to
-          sit down in and enjoy a book.
+          sit down in and enjoy a book. Built by{" "}
+          <Link
+            href="https://x.com/typicalmitul"
+            isExternal
+            className="underline w-fit"
+          >
+            @typicalmitul
+          </Link>
+          .
         </p>
         {route === "/" ? (
           <Link href="/about" className="flex items-center mt-4 gap-x-1 w-fit">
