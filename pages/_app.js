@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import Footer from "@/components/Footer";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 import Header from "@/components/Header";
 import Head from "next/head";
 import { DefaultSeo } from "next-seo";
