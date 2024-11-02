@@ -1,5 +1,6 @@
 import Link from "@/components/Link";
 import Arrow from "@/components/Arrow";
+import MagnifyingGlass from "@/components/MagnifyingGlass";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { google } from "googleapis";
 import React from "react";
@@ -43,6 +44,14 @@ export async function getStaticProps() {
 }
 
 export default function Home({ parks }) {
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const filteredParks = parks.filter((park) =>
+    Object.values(park).some((value) =>
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  );
+
   const ParkRow = (props) => {
     const {
       parkName,
@@ -209,11 +218,24 @@ export default function Home({ parks }) {
 
   return (
     <main className="w-full h-full">
+      <div className="relative border-t sm:border border-mcqueen w-full font-medium bg-mcqueen/20 focus-within:bg-mcqueen/5 transition-all duration-200 grid grid-cols-yeah sm:mb-12 sm:-mt-4">
+        <div className="col-[1/-1]">
+          <MagnifyingGlass className="w-5 h-5 text-mcqueen/60 absolute top-1/2 left-4 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            placeholder="Search for parks..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full h-full outline-none placeholder:text-mcqueen/60 bg-transparent pr-4 pl-16 sm:pl-12 py-4 sm:py-2.5"
+          />
+        </div>
+      </div>
       <ul className="sm:hidden grid w-full divide-y divide-mcqueen border-t-2 border-mcqueen">
-        {parks.map((park) => (
+        {filteredParks.map((park) => (
           <MobileParkRow key={park.id} {...park} />
         ))}
       </ul>
+
       <div className="hidden sm:block">
         <div className="text-xl border-b-2 border-mcqueen">
           <ul className="grid w-full px-4 grid-cols-yeah">
@@ -224,9 +246,10 @@ export default function Home({ parks }) {
             <li className="pl-4">Map</li>
           </ul>
         </div>
+
         <div className="grid isolate">
           <ul className="z-10 border-b divide-y border-mcqueen divide-mcqueen park overlay">
-            {parks.map((park) => (
+            {filteredParks.map((park) => (
               <ParkRow key={park.id} {...park} />
             ))}
           </ul>
