@@ -81,7 +81,7 @@ export default function Header() {
           Parks around the world handpicked by the internet that are perfect to
           sit down in and enjoy a book. Built by{" "}
           <Link
-            href="https://instagram.com/typicalmitul"
+            href="https://x.com/typicalmitul"
             isExternal
             className="underline w-fit"
           >
@@ -174,7 +174,13 @@ export default function Header() {
               >
                 Submit
               </Button>
-              {submitted && <p>{"Received! I'll add to it the list soon."}</p>}
+              {submitted && (
+                <p>
+                  {
+                    "Thank you so much! I'll try my best to add your park to the list soon 🫶."
+                  }
+                </p>
+              )}
             </form>
           </Dialog.Content>
         </Dialog.Root>
