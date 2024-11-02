@@ -43,6 +43,14 @@ export async function getStaticProps() {
 }
 
 export default function Home({ parks }) {
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const filteredParks = parks.filter((park) =>
+    Object.values(park).some((value) =>
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  );
+
   const ParkRow = (props) => {
     const {
       parkName,
@@ -209,11 +217,21 @@ export default function Home({ parks }) {
 
   return (
     <main className="w-full h-full">
+      <div className="relative">
+        <input
+          type="text"
+          placeholder="Search parks..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="border-y border-mcqueen w-full px-4 py-2.5 mb-4 outline-none placeholder:text-mcqueen/50 font-medium bg-mcqueen/5 border-b-0"
+        />
+      </div>
       <ul className="sm:hidden grid w-full divide-y divide-mcqueen border-t-2 border-mcqueen">
-        {parks.map((park) => (
+        {filteredParks.map((park) => (
           <MobileParkRow key={park.id} {...park} />
         ))}
       </ul>
+
       <div className="hidden sm:block">
         <div className="text-xl border-b-2 border-mcqueen">
           <ul className="grid w-full px-4 grid-cols-yeah">
@@ -224,9 +242,10 @@ export default function Home({ parks }) {
             <li className="pl-4">Map</li>
           </ul>
         </div>
+
         <div className="grid isolate">
           <ul className="z-10 border-b divide-y border-mcqueen divide-mcqueen park overlay">
-            {parks.map((park) => (
+            {filteredParks.map((park) => (
               <ParkRow key={park.id} {...park} />
             ))}
           </ul>
